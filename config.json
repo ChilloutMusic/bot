@@ -1,0 +1,37 @@
+{
+	"settings": {
+		"trigger": "!",
+		"room": "electronic-chillout-music"
+	},
+	"users": {
+		"bot": {
+			"name": "Cerebral Parsley",
+			"id": "26349274"
+		},
+		"admins": {
+			"list": [
+				4652868,
+				3693770
+			],
+			"4652868": "Mitch",
+			"3693770": "braincomb"
+		}
+	},
+	"permissions": {
+		"none": 0,
+		"rdj": 1000,
+		"bouncer": 2000,
+		"manager": 3000,
+		"cohost": 4000,
+		"host": 5000,
+		"admin": 1000000
+	},
+	"lang": {
+		"love": [
+			"<3 Awesome play!",
+			"<3 A stellar play!",
+			"<3 I phreaking love this!",
+			"<3 This is orgasmic to my ears!"
+		]
+	}
+}
