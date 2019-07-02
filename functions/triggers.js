@@ -10,6 +10,7 @@ module.exports = function(bot) {
 	}
 	formatTriggers = function(data, content) {
 		content = content.replace(/\[me]/gi, data.from);
+
 		content = content.replace(/\[dj]/gi, bot.getDJ());
 		if (content.match(/\[you]/gi)) {
 			if (data.mentions.length == 0) {
@@ -18,6 +19,7 @@ module.exports = function(bot) {
 				content = content.replace(/\[you]/gi, data.mentions);
 			}
 		}
+
 		if (content.match(/^\/me|^\/em/)) {
 			content = content.replace('/me', '');
 			content = content.replace('/em', '');
@@ -26,10 +28,20 @@ module.exports = function(bot) {
 		} else {
 			content = content.trim();
 		}
+
 		var anyone;
 		while((anyone = /\[anyone]/gi.exec(content)) !== null) {
 			content = content.replace(anyone, randomUser());
 		}
+
+		let re =  /\[\((.+?)\)\]/;
+		let multiChoiceTrigger = re.test(content);
+		if (multiChoiceTrigger) {
+			let randomSelection = re.exec(content)[1].split(',');
+			let randomOutput = randomSelection[Math.floor(Math.random() * randomSelection.length)];
+			content = content.replace(re, randomOutput);
+		}
+
 		return content;
 	}
 	addTriggers = function(data, trigger, content) {
