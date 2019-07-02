@@ -22,7 +22,7 @@ module.exports = function(bot) {
 			content = content.replace('/me', '');
 			content = content.replace('/em', '');
 			content = content.trim();
-			content = `_${content}_`;
+			content = `${content}`;
 		} else {
 			content = content.trim();
 		}
