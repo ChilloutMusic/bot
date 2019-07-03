@@ -10,8 +10,9 @@ module.exports = function(bot) {
 		        if (!command) {
 		        	handleTriggers(data);
 		        }
-		    } else if (trivia.running) {
-		    	trivia.checkAnswer(data);
+		    } else {
+		    	if (trivia.running) trivia.checkAnswer(data);
+			    if (scramble.running) scramble.checkAnswer(data);
 		    }
 	    }
 	});
