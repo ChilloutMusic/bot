@@ -23,16 +23,18 @@ module.exports = function() {
 			}
 		},
 		add: function(data) {
-			if (data.from.id == bot.getDJ().id) {
-				bot.sendChat("@" + data.from.username + " you are DJing now, noob!");
-			} else if (bot.getWaitListPosition(data.from.id) == -1) {
-				bot.sendChat("@" + data.from.username + " you are not in queue, noob!");
-			} else if (bot.getWaitListPosition(data.from.id) == 1) {
-				bot.sendChat("@" + data.from.username + " has locked their spot!");
-				raffle.locked = true;
-			} else {
-				bot.sendChat("@" + data.from.username + " has joined the raffle, hold on to your panties!");
-				raffle.joined.push(data.from);
+			if (!raffle.joined.includes(data.from)) {
+				if (data.from.id == bot.getDJ().id) {
+					bot.sendChat("@" + data.from.username + " you are DJing now, noob!");
+				} else if (bot.getWaitListPosition(data.from.id) == -1) {
+					bot.sendChat("@" + data.from.username + " you are not in queue, noob!");
+				} else if (bot.getWaitListPosition(data.from.id) == 1) {
+					bot.sendChat("@" + data.from.username + " has locked their spot!");
+					raffle.locked = true;
+				} else {
+					bot.sendChat("@" + data.from.username + " has joined the raffle, hold on to your panties!");
+					raffle.joined.push(data.from);
+				}
 			}
 			bot.moderateDeleteChat(data.id)
 		},
