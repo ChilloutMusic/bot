@@ -9,7 +9,7 @@ module.exports = function() {
 				request('https://opentdb.com/api.php?amount=1&category=9&difficulty=medium&type=multiple', function(err, res) {
 					if (!err && res) {
 						trivia.q = JSON.parse(res.body).results[0];
-						if (!trivia.q.question.startsWith("Which one of these")) { // Can't answer these questions unless you give sendChat incorrect_answers & correct_answer
+						if (!trivia.q.question.startsWith("Which one of these") || !trivia.q.question.startsWith("Which of these")) { // Can't answer these questions unless you give sendChat incorrect_answers & correct_answer
 							bot.sendChat(":question: Trivia has started! You have " + trivia.timelimit + " seconds to answer this...");
 							if (trivia.q.type == "boolean") bot.sendChat("True or False?");
 							bot.sendChat(he.decode(trivia.q.question));
