@@ -75,8 +75,4 @@ module.exports = function(bot) {
 		fs.writeFileSync('./triggers.json', t);
 		loadTriggers(bot);
 	}
-	randomUser = function() {
-		var users = bot.getUsers();
-		return users[Math.floor(Math.random() * users.length)].username;
-	}
 }
