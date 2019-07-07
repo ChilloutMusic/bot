@@ -5,9 +5,11 @@ exports.handler = function(data) {
 	var args = data.message.split(' ');
 	if (args[2]) {
 		var trigger = args[2].replace('!', '');
-		var content = data.message.replace('trigger add !'+trigger+' ', '');
+		var content = data.message.replace('trigger add !'+trigger+' ', '').replace('trigger edit !'+trigger+' ', '');;
 		if (args[1] == 'add' && trigger && content) {
 			addTriggers(data, trigger, content);
+		} else if (args[1] == 'edit' && trigger && content) {
+			editTriggers(data, trigger, content);
 		} else if ((args[1] == 'remove' || args[1] == 'del') && trigger) {
 			removeTriggers(data, trigger);
 		}

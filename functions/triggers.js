@@ -10,8 +10,10 @@ module.exports = function(bot) {
 	}
 	formatTriggers = function(data, content) {
 		content = content.replace(/\[me]/gi, data.from);
-
 		content = content.replace(/\[dj]/gi, bot.getDJ());
+		content = content.replace('/me', '');
+		content = content.replace('/em', '');
+
 		if (content.match(/\[you]/gi)) {
 			if (data.mentions.length == 0) {
 				content = content.replace(/\[you]/gi, randomUser());
@@ -20,27 +22,13 @@ module.exports = function(bot) {
 			}
 		}
 
-		if (content.match(/^\/me|^\/em/)) {
-			content = content.replace('/me', '');
-			content = content.replace('/em', '');
-			content = content.trim();
-			content = `${content}`;
-		} else {
-			content = content.trim();
-		}
-
 		var anyone;
 		while((anyone = /\[anyone]/gi.exec(content)) !== null) {
 			content = content.replace(anyone, randomUser());
 		}
 
-		let re =  /\[\((.+?)\)\]/;
-		let multiChoiceTrigger = re.test(content);
-		if (multiChoiceTrigger) {
-			let randomSelection = re.exec(content)[1].split(',');
-			let randomOutput = randomSelection[Math.floor(Math.random() * randomSelection.length)];
-			content = content.replace(re, randomOutput);
-		}
+		let randomSelection = /\[\((.+?)\)\]/gi.exec(content)[1].split(',');
+		content = content.replace(/\[\((.+?)\)\]/gi, randomSelection[Math.floor(Math.random() * randomSelection.length)]);
 
 		return content;
 	}
@@ -58,6 +46,16 @@ module.exports = function(bot) {
 		triggers.total = triggers.triggers.length;
 		updateTriggers();
 		bot.sendChat("Added the trigger !"+trigger);
+	}
+	editTriggers = function(data, trigger, content) {
+		for (var i = 0; i < triggers.total; i++) {
+    		if (triggers.triggers[i].keyword == trigger) {
+    			triggers.triggers[i].content = content;
+    			updateTriggers();
+    			bot.sendChat("Edited the trigger !"+trigger);
+    			break;
+    		}
+    	}
 	}
 	removeTriggers = function(data, trigger) {
 		for (var i = 0; i < triggers.total; i++) {
