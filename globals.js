@@ -7,6 +7,7 @@ module.exports = function(options) {
 
 	commands = options.commands;
 	triggers = options.triggers;
+	users = options.users;
 	config = options.config;
 	bot = options.bot;
 }

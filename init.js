@@ -1,7 +1,7 @@
-module.exports = function(commands, triggers) {
+module.exports = function(commands, triggers, users) {
     loadTriggers = function(bot) {
         triggers = reload('./triggers.json');
-        reload('./globals')({bot: bot, config: config, triggers: triggers, commands: commands});
+        reload('./globals')({bot: bot, config: config, triggers: triggers, commands: commands, users: users});
         console.log("[INIT] Triggers loaded...");
     }
     loadCommands = function(bot) {
@@ -14,7 +14,7 @@ module.exports = function(commands, triggers) {
                     commands.push(command);
                 }
             });
-            reload('./globals')({bot: bot, config: config, triggers: triggers, commands: commands});
+            reload('./globals')({bot: bot, config: config, triggers: triggers, commands: commands, users: users});
             console.log("[INIT] " + commands.length + " Commands loaded...");
         } catch (e) {
             console.error('Unable to load command: ', e.stack);
@@ -58,5 +58,10 @@ module.exports = function(commands, triggers) {
         } catch (e) {
             console.error('Unable to load function: ', e.stack);
         }
+    }
+    loadUsers = function(bot) {
+        users = reload('./users.json');
+        reload('./globals')({bot: bot, config: config, triggers: triggers, commands: commands, users: users});
+        console.log("[INIT] Users loaded...");        
     }
 }
