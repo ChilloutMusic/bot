@@ -1,9 +1,4 @@
-module.exports = function(commands, triggers, users) {
-    loadTriggers = function(bot) {
-        triggers = reload('./triggers.json');
-        reload('./globals')({bot: bot, config: config, triggers: triggers, commands: commands, users: users});
-        console.log("[INIT] Triggers loaded...");
-    }
+module.exports = function(commands, triggers, users, history) {
     loadCommands = function(bot) {
         commands = [];
         try {
@@ -14,7 +9,7 @@ module.exports = function(commands, triggers, users) {
                     commands.push(command);
                 }
             });
-            reload('./globals')({bot: bot, config: config, triggers: triggers, commands: commands, users: users});
+            reloadGlobals(bot);
             console.log("[INIT] " + commands.length + " Commands loaded...");
         } catch (e) {
             console.error('Unable to load command: ', e.stack);
@@ -59,9 +54,22 @@ module.exports = function(commands, triggers, users) {
             console.error('Unable to load function: ', e.stack);
         }
     }
+    loadTriggers = function(bot) {
+        triggers = reload('./triggers.json');
+        reloadGlobals(bot);
+        console.log("[INIT] Triggers loaded...");
+    }
     loadUsers = function(bot) {
         users = reload('./users.json');
-        reload('./globals')({bot: bot, config: config, triggers: triggers, commands: commands, users: users});
+        reloadGlobals(bot);
         console.log("[INIT] Users loaded...");        
+    }
+    loadHistory = function(bot) {
+        history = reload('./history.json');
+        reloadGlobals(bot);
+        console.log("[INIT] History loaded...");        
+    }
+    reloadGlobals = function(bot) {
+        reload('./globals')({bot: bot, config: config, triggers: triggers, commands: commands, users: users, history: history});
     }
 }

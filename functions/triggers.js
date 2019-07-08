@@ -27,8 +27,10 @@ module.exports = function(bot) {
 			content = content.replace(anyone, randomUser());
 		}
 
-		let randomSelection = /\[\((.+?)\)\]/gi.exec(content)[1].split(',');
-		content = content.replace(/\[\((.+?)\)\]/gi, randomSelection[Math.floor(Math.random() * randomSelection.length)]);
+		if (/\[\((.+?)\)\]/gi.exec(content)) {
+			let randomSelection = /\[\((.+?)\)\]/gi.exec(content)[1].split(',');
+			content = content.replace(/\[\((.+?)\)\]/gi, randomSelection[Math.floor(Math.random() * randomSelection.length)]);
+		}
 
 		return content;
 	}

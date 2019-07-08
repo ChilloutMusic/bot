@@ -8,6 +8,7 @@ module.exports = function(options) {
 	commands = options.commands;
 	triggers = options.triggers;
 	users = options.users;
+	history = options.history;
 	config = options.config;
 	bot = options.bot;
 }

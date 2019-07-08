@@ -3,6 +3,7 @@ var config = require('./config.json');
 var commands = [];
 var triggers;
 var users;
+var history;
 
 new PlugAPI({
     email: '',
@@ -15,12 +16,13 @@ new PlugAPI({
         bot.multiLineLimit = 5;
         bot.deleteCommands = false;
 
-        require('./globals')({bot: bot, config: config, triggers: triggers, commands: commands, users: users});
-        require('./init')(commands, triggers, users);
+        require('./globals')({bot: bot, config: config, triggers: triggers, commands: commands, users: users, history: history});
+        require('./init')(commands, triggers, users, history);
 
         loadTriggers(bot);
         loadCommands(bot);
         loadUsers(bot);
+        loadHistory(bot);
         loadGames(bot);
         loadEvents(bot);
         loadFunctions(bot);
