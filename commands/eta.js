@@ -14,7 +14,11 @@ exports.handler = function(data) {
 	});
 	if (pos == 0) bot.sendChat("You're already the dj!");
 	if (pos > 0) {
-		seconds = bot.getTimeRemaining() + (average*(bot.getWaitList().length - pos));
+		if (pos == 1) {
+			seconds = bot.getTimeRemaining()
+		} else {
+			seconds = bot.getTimeRemaining() + (average*pos);
+		}
 		var minutes = Math.floor(seconds / 60);
 		bot.sendChat("@" + data.from.username + ", You have about " + minutes + " minutes and " + Math.round(seconds-(minutes*60)) + " seconds until you're dj");
 	} else {

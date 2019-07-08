@@ -2,7 +2,6 @@ exports.name = 'plays'
 exports.permission = config.permissions.none
 exports.enabled = true
 exports.handler = function(data) {
-	console.log(history.all);
 	var song = data.message.replace('plays ', '').split(/\s-\s(.+)/);
 	var found = false;
 	if (song.length > 1) {
