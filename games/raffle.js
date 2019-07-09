@@ -24,7 +24,7 @@ module.exports = function() {
 		},
 		add: function(data) {
 			if (!raffle.joined.includes(data.from)) {
-				if (data.from.id == bot.getDJ().id || 0) {
+				if (data.from.id == bot.getDJ().id) {
 					bot.sendChat("@" + data.from.username + " you are DJing now, noob!");
 				} else if (bot.getWaitListPosition(data.from.id) == -1) {
 					bot.sendChat("@" + data.from.username + " you are not in queue, noob!");
