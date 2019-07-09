@@ -1,6 +1,6 @@
 module.exports = function() {
 	swap = {
-		timelimit: 15,
+		timelimit: 45,
 		swaps: [],
 		timeouts: {},
 		request: function(data) {
