@@ -9,6 +9,7 @@ module.exports = function() {
 		timeout: setTimeout(function() {}, 100),
 		start: function() {
 			if (!trivia.running) {
+				trivia.checked = "";
 				trivia.questionIndex = Math.floor(Math.random()*trivia.questions.length);
 				trivia.question = trivia.questions[trivia.questionIndex];
 				bot.sendChat(":question: Trivia has started! You have " + trivia.timelimit + " seconds to answer this...");
