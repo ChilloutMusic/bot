@@ -11,6 +11,7 @@ module.exports = function(bot) {
 	formatTriggers = function(data, content) {
 		content = content.replace(/\[me]/gi, data.from);
 		content = content.replace(/\[dj]/gi, bot.getDJ() || 'DJ');
+		content = content.replace(/\[author]/gi, bot.getMedia().author);
 		content = content.replace('/me', '');
 		content = content.replace('/em', '');
 
