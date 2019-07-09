@@ -26,7 +26,7 @@ exports.handler = function(data) {
 	} else {
 		for (var i = 0; i < users.length; i++) {
 			var item = users[i];
-			if (item.id == bot.getDJ().id) {
+			if (bot.getDJ() != null && item.id == bot.getDJ().id) {
 				item.balance.points = item.balance.points + 1;
 				bot.sendChat(getLang("love") + " @" + bot.getDJ());
 				bot.sendChat(item.username + " received 1 love point! :love_letter:");
