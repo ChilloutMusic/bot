@@ -5,9 +5,6 @@ module.exports = function(bot) {
 			var item = users[i];
 			if (item.id == data.id) {
 				isNewUser = false;
-				item.lastSeen = new Date();
-				fs.writeFileSync("./users.json", JSON.stringify(users));
-				loadUsers(bot);
 				break;
 			}
 		}

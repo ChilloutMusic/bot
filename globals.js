@@ -4,6 +4,7 @@ module.exports = function(options) {
 	dpath = require('path');
 	reload = require('require-reload')(require);
 	request = require('request');
+	moment = require('moment');
 
 	commands = options.commands;
 	triggers = options.triggers;
