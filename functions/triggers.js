@@ -1,6 +1,6 @@
 module.exports = function(bot) {
 	handleTriggers = function(data) {
-		for (var i = 0; i < triggers.total; i++) {
+		for (var i = 0; i < triggers.triggers.length; i++) {
     		if (triggers.triggers[i].keyword == data.message.split(' ')[0]) {
     			triggers.triggers[i].useCount += 1;
     			bot.sendChat(formatTriggers(data, triggers.triggers[i].content));
@@ -11,7 +11,7 @@ module.exports = function(bot) {
 	formatTriggers = function(data, content) {
 		content = content.replace(/\[me]/gi, data.from);
 		content = content.replace(/\[dj]/gi, bot.getDJ() || 'DJ');
-		content = content.replace(/\[author]/gi, bot.getMedia().author);
+		content = content.replace(/\[author]/gi, bot.getMedia().author || '');
 
 		if (content.match(/^\/me|^\/em/)) {
 			content = content.replace('/me', '');
@@ -43,22 +43,33 @@ module.exports = function(bot) {
 		return content;
 	}
 	addTriggers = function(data, trigger, content) {
-		triggers.triggers.push({
-			"keyword": trigger,
-			"content": content,
-			"useCount": 0,
-			"creator": {
-				"username": data.from.username,
-				"id": (data.from.id).toString()
-			},
-			"dateAdded": new Date().toISOString()
-		});
-		triggers.total = triggers.triggers.length;
-		updateTriggers();
-		bot.sendChat("Added the trigger !"+trigger);
+		let isNewTrigger = true;
+		for (var i = 0; i < triggers.triggers.length; i++) {
+			if (trigger == triggers.triggers[i].keyword) {
+				bot.sendChat("That trigger already exists!");
+				isNewTrigger = false;
+				break;
+			}
+		}
+
+		if (isNewTrigger) {
+			triggers.triggers.push({
+				"keyword": trigger,
+				"content": content,
+				"useCount": 0,
+				"creator": {
+					"username": data.from.username,
+					"id": (data.from.id).toString()
+				},
+				"dateAdded": new Date().toISOString()
+			});
+			triggers.total = triggers.triggers.length;
+			updateTriggers();
+			bot.sendChat("Added the trigger !" + trigger);
+		}
 	}
 	editTriggers = function(data, trigger, content) {
-		for (var i = 0; i < triggers.total; i++) {
+		for (var i = 0; i < triggers.triggers.length; i++) {
     		if (triggers.triggers[i].keyword == trigger) {
     			triggers.triggers[i].content = content;
     			updateTriggers();
@@ -68,7 +79,7 @@ module.exports = function(bot) {
     	}
 	}
 	removeTriggers = function(data, trigger) {
-		for (var i = 0; i < triggers.total; i++) {
+		for (var i = 0; i < triggers.triggers.length; i++) {
     		if (triggers.triggers[i].keyword == trigger) {
     			triggers.triggers.splice(i, 1);
     			triggers.total = triggers.triggers.length;
