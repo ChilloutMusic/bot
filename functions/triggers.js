@@ -12,8 +12,15 @@ module.exports = function(bot) {
 		content = content.replace(/\[me]/gi, data.from);
 		content = content.replace(/\[dj]/gi, bot.getDJ() || 'DJ');
 		content = content.replace(/\[author]/gi, bot.getMedia().author);
-		content = content.replace('/me', '');
-		content = content.replace('/em', '');
+
+		if (content.match(/^\/me|^\/em/)) {
+			content = content.replace('/me', '');
+			content = content.replace('/em', '');
+			content = content.trim();
+			content = `${content}`;
+		} else {
+			content = content.trim();
+		}
 
 		if (content.match(/\[you]/gi)) {
 			if (data.mentions.length == 0) {
