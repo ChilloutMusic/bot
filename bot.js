@@ -27,6 +27,10 @@ new PlugAPI({
         loadEvents(bot);
         loadFunctions(bot);
 
-        bot.connect(config.settings.room);
+        const reconnect = () => { bot.connect(config.settings.room); };
+        reconnect();
+
+        bot.on('close', reconnect);
+        bot.on('error', reconnect);
     }
 });
