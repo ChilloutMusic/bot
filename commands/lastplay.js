@@ -3,7 +3,7 @@ exports.permission = config.permissions.none
 exports.enabled = true
 exports.handler = function(data) {
 	var historyID = bot.getMedia().cid;
-	if (bot.getMedia().type == 1) {
+	if (bot.getMedia().format == 1) {
 		historyID = 'yt' + bot.getMedia().cid;
 	} else {
 		historyID = 'sc' + bot.getMedia().cid;

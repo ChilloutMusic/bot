@@ -1,5 +1,6 @@
 module.exports = function(bot) {
 	bot.on('advance', function(data) {
+		announceSong();
 		if (data.lastPlay.media !== null) {
 			var basic = {
 				"cid": data.lastPlay.media.cid,
@@ -28,13 +29,13 @@ module.exports = function(bot) {
 				}
 			}
 			var historyID = data.lastPlay.media.cid;
-			if (data.lastPlay.media.type == 1) {
+			if (data.lastPlay.media.format == 1) {
 				historyID = 'yt' + data.lastPlay.media.cid;
 			} else {
 				historyID = 'sc' + data.lastPlay.media.cid
 			}
 			if (history.all[historyID]) {
-				history.all.historyID.latest = {
+				history.all.historyID["latest"] = {
 					"timestamp": data.startTime,
 					"woots": data.lastPlay.score.positive,
 					"mehs": data.lastPlay.score.negative,
@@ -46,7 +47,7 @@ module.exports = function(bot) {
 						"id": data.lastPlay.dj.id
 					}
 				}
-				history.all.historyID.total = {
+				history.all.historyID["total"] = {
 					"plays": history.all.historyID.total.plays++,
 					"woots": history.all.historyID.total.woots + data.lastPlay.score.positive,
 					"mehs": history.all.historyID.total.mehs + data.lastPlay.score.negative,
@@ -60,6 +61,7 @@ module.exports = function(bot) {
 					"title": data.lastPlay.media.title,
 					"artist": data.lastPlay.media.author,
 					"duration": data.lastPlay.media.duration, 
+					"timestamp": data.startTime,
 					"latest": {
 						"timestamp": data.startTime,
 						"woots": data.lastPlay.score.positive,
