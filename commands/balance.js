@@ -2,7 +2,6 @@ exports.name = 'balance'
 exports.permission = config.permissions.none
 exports.enabled = true
 exports.handler = function(data) {
-  console.log(data);
   if (data.mentions.length > 0) {
     for (var i = 0; i < users.length; i++) {
       var item = users[i];
