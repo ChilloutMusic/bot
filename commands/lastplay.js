@@ -8,8 +8,8 @@ exports.handler = function(data) {
 	} else {
 		historyID = 'sc' + bot.getMedia().cid;
 	}
-	if (history.all[historyID]) {
-		bot.sendChat('@' + data.from.username + ', This song was last played ' + timeSince(new Date(history.all[historyID].latest.timestamp)))
+	if (history.all.historyID) {
+		bot.sendChat('@' + data.from.username + ', This song was last played ' + timeSince(new Date(history.all.historyID.latest.timestamp)))
 	} else {
 		bot.sendChat('@' + data.from.username + ', This song has never played');
 	}

@@ -34,8 +34,8 @@ module.exports = function(bot) {
 			} else {
 				historyID = 'sc' + data.lastPlay.media.cid
 			}
-			if (history.all[historyID]) {
-				history.all.historyID["latest"] = {
+			if (history.all.historyID) {
+				history.all.historyID.latest = {
 					"timestamp": data.startTime,
 					"woots": data.lastPlay.score.positive,
 					"mehs": data.lastPlay.score.negative,
@@ -47,7 +47,7 @@ module.exports = function(bot) {
 						"id": data.lastPlay.dj.id
 					}
 				}
-				history.all.historyID["total"] = {
+				history.all.historyID.total = {
 					"plays": history.all.historyID.total.plays++,
 					"woots": history.all.historyID.total.woots + data.lastPlay.score.positive,
 					"mehs": history.all.historyID.total.mehs + data.lastPlay.score.negative,

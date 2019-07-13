@@ -7,7 +7,7 @@ module.exports = function(bot) {
 		} else {
 			historyID = 'sc' + media.cid;
 		}
-		if (history.all[historyID]) {
+		if (history.all.historyID) {
 			bot.sendChat("Now playing '" + media.author + " - " + media.title + "'. It has been played " + history.all.historyID.total.plays + " times");
 		} else {
 			bot.sendChat("Now playing '" + media.author + " - " + media.title + "'. It has never been played here before!");
