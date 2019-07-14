@@ -53,6 +53,10 @@ module.exports = function() {
 						          	"value": answered,
 						          	"inline": true
 						        },
+							{
+						          	"name": "Url",
+						          	"value": "https://mitchdev.net/cm/trivia?index=" + trivia.questionIndex
+						        },
 						        {
 						          	"name": "Category",
 						          	"value": trivia.question.category
