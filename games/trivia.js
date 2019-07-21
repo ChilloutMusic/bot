@@ -36,7 +36,7 @@ module.exports = function() {
 			}
 		},
 		log: function(answered) {
-			request.post('https://discordapp.com/api/webhooks/597064386292482068/JDqL9ZUkQZ4pztoTYMeVctR6nQ9BcvN6XriqTUoC75Ck-bNG5crnPkaGZcJ1ZBNEJZN4', {
+			request.post(process.env.WEBHOOK_TRIVIA || '', {
 				json: {
 					"username": "Trivia log",
 					"embeds": [

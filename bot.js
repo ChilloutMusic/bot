@@ -1,13 +1,16 @@
 var PlugAPI = require('plugapi');
 var config = require('./config.json');
+const dotenv = require('dotenv');
+dotenv.config();
+
 var commands = [];
 var triggers;
 var users;
 var history;
 
 new PlugAPI({
-    email: '',
-    password: ''
+    email: process.env.BOT_EMAIL || '',
+    password: process.env.BOT_PASSWD || ''
 }, function (err, bot) {
     if (err) {
         console.log('Error initializing PlugAPI: ' + err);
