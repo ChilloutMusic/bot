@@ -1,4 +1,4 @@
-exports.name = 'swap'
+exports.name = ['swap']
 exports.permission = config.permissions.none
 exports.enabled = true
 exports.handler = function(data) {

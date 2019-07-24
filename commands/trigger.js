@@ -1,4 +1,4 @@
-exports.name = 'trigger'
+exports.name = ['trigger']
 exports.permission = config.permissions.manager
 exports.enabled = true
 exports.handler = function(data) {

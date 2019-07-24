@@ -1,4 +1,4 @@
-exports.name = 'eta'
+exports.name = ['eta']
 exports.permission = config.permissions.none
 exports.enabled = true
 exports.handler = function(data) {

@@ -1,4 +1,4 @@
-exports.name = 'lastseen'
+exports.name = ['lastseen']
 exports.permission = config.permissions.none
 exports.enabled = true
 exports.handler = function(data) {

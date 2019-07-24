@@ -1,4 +1,4 @@
-exports.name = 'getbadge'
+exports.name = ['getbadge']
 exports.permission = config.permissions.none
 exports.enabled = true
 exports.handler = function(data) {

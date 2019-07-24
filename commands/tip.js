@@ -1,4 +1,4 @@
-exports.name = 'tip'
+exports.name = ['tip']
 exports.permission = config.permissions.none
 exports.enabled = true
 exports.handler = function(data) {

@@ -1,4 +1,4 @@
-exports.name = 'urban'
+exports.name = ['urban']
 exports.permission = config.permissions.none
 exports.enabled = true
 exports.handler = function(data) {

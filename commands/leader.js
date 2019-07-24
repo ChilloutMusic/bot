@@ -1,4 +1,4 @@
-exports.name = 'leader'
+exports.name = ['leader']
 exports.permission = config.permissions.none
 exports.enabled = true
 exports.handler = function(data) {
