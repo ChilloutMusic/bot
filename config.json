@@ -26,6 +26,13 @@
 		"host": 5000,
 		"admin": 1000000
 	},
+	"cost": {
+		"boost1": 1,
+		"boost3": 3,
+		"boost7": 5,
+		"boost15": 10,
+		"front": 15
+	},
 	"lang": {
 		"love": [
 			"<3 Awesome play!",
