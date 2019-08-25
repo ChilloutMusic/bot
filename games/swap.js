@@ -43,7 +43,7 @@ module.exports = function() {
 						swap.swaps.splice(swap.swaps.indexOf(s), 1);
 						delete swap.timeouts[s.d];
 					} else {
-						bot.sendChat("@" + s.d + ", failed to execute swap.")
+						bot.sendChat("@" + bot.getUser(s.d) + ", failed to execute swap.")
 					}
 				}
 			});
@@ -51,7 +51,7 @@ module.exports = function() {
 		deny: function(data) {
 			swap.swaps.forEach(function(s) {
 				if (s.d == data.from.id) {
-					bot.sendChat("@" + s.a + ", " + s.d + " denied to swap.");
+					bot.sendChat("@" + bot.getUser(s.a) + ", " + bot.getUser(s.d) + " denied to swap.");
 					clearTimeout(swap.timeouts[s.d]);
 					swap.swaps.splice(swap.swaps.indexOf(s), 1);
 					delete swap.timeouts[s.d];
