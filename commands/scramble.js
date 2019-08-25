@@ -1,5 +1,5 @@
 exports.name = 'scramble'
-exports.permission = config.permissions.manager
+exports.permission = config.permissions.bouncer
 exports.enabled = true
 exports.handler = function(data) {
 	scramble.start();
