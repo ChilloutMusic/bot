@@ -1,4 +1,4 @@
-exports.name = 'front'
+exports.name = ['front']
 exports.permission = config.permissions.bouncer
 exports.enabled = true
 exports.handler = function(data) {

@@ -1,4 +1,4 @@
-exports.name = 'balance'
+exports.name = ['balance', 'bal']
 exports.permission = config.permissions.none
 exports.enabled = true
 exports.handler = function(data) {

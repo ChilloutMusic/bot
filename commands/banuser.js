@@ -1,4 +1,4 @@
-exports.name = 'banuser'
+exports.name = ['banuser']
 exports.permission = config.permissions.bouncer
 exports.enabled = true
 exports.handler = function(data) {

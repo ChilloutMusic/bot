@@ -1,4 +1,4 @@
-exports.name = 'wlunblock'
+exports.name = ['wlunblock']
 exports.permission = config.permissions.bouncer
 exports.enabled = true
 exports.handler = function(data) {

@@ -1,4 +1,4 @@
-exports.name = 'songlink'
+exports.name = ['songlink']
 exports.permission = config.permissions.none
 exports.enabled = true
 exports.handler = function(data) {

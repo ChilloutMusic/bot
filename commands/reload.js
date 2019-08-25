@@ -1,4 +1,4 @@
-exports.name = 'r'
+exports.name = ['r', 'reload']
 exports.permission = config.permissions.admin
 exports.enabled = true
 exports.handler = function(data) {

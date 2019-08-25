@@ -1,4 +1,4 @@
-exports.name = 'trivia'
+exports.name = ['trivia']
 exports.permission = config.permissions.manager
 exports.enabled = true
 exports.handler = function(data) {

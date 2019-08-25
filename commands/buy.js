@@ -1,4 +1,4 @@
-exports.name = 'buy'
+exports.name = ['buy']
 exports.permission = config.permissions.none
 exports.enabled = true
 exports.handler = function(data) {

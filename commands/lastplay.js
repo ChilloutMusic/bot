@@ -1,4 +1,4 @@
-exports.name = 'lastplay'
+exports.name = ['lastplay']
 exports.permission = config.permissions.none
 exports.enabled = true
 exports.handler = function(data) {
