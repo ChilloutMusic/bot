@@ -63,7 +63,7 @@ exports.handler = function(data) {
 	} else {
     // Award tip to current DJ
     if (bot.getDJ() && tipper.id != bot.getDJ().id) {
-      if (data.from.role == 0 && tipper.balance.coins >= 1) {
+      if (data.from.role <= 1000 && tipper.balance.coins >= 1) {
         tipper.balance.coins = tipper.balance.coins - 1;
         tipDJ();
       } else if (data.from.role >= config.permissions.bouncer) {
