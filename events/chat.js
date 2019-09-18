@@ -1,4 +1,5 @@
 module.exports = function(bot) {
+	var disabled = false;
 	bot.on('chat', function(data) {
 		if (data.from.id != config.users.bot.id) {
 			if (data.message.charAt(0) == config.settings.trigger) {
@@ -10,15 +11,26 @@ module.exports = function(bot) {
 					}
 					return found;
 				});
-        if (command && command.enabled && (data.from.role >= command.permission || config.users.admins.list.includes(data.from.id))) {
+        if (!disabled && command && command.enabled && (data.from.role >= command.permission || config.users.admins.list.includes(data.from.id))) {
         	command.handler(data);
         }
-        if (!command) {
+        if (!disabled && !command) {
         	handleTriggers(data);
         }
+        if (data.mentions.length > 0 && config.users.admins.list.includes(data.from.id)) {
+      		if (data.mentions[0].username == bot.getSelf().username) {
+      			if (data.message.split(' ')[0] == 'enable') {
+      				disabled = false;
+      				bot.sendChat("I've enabled commands");
+      			} else if (data.message.split(' ')[0] == 'disable') {
+      				disabled = true;
+      				bot.sendChat("I've disabled commands");
+      			}
+      		}
+        }
 	    } else {
-	    	if (trivia.running) trivia.checkAnswer(data);
-		    if (scramble.running) scramble.checkAnswer(data);
+	    	if (!disabled && trivia.running) trivia.checkAnswer(data);
+		    if (!disabled && scramble.running) scramble.checkAnswer(data);
 	    }
     }
 	});
